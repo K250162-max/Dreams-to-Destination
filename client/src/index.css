@@ -855,7 +855,13 @@
   .hero-trust-line { align-items: flex-start; flex-wrap: wrap; }
   .hero-trust-line > i { display: none; }
   .hero-visual { min-height: 430px; margin-top: 8px; }
-  .atlas-stage, .cinematic-globe-stage { position: absolute; top: -92px; transform: scale(.62); }
+  .atlas-stage, .cinematic-globe-stage {
+    position: absolute;
+    top: -92px;
+    left: 50%;
+    transform: translateX(-50%) scale(.62);
+    transform-origin: center center;
+  }
   .hero-stats { grid-template-columns: 1fr 1fr; gap: 18px 0; }
   .hero-stats > div { padding-right: 12px; }
   .hero-stats > div + div { padding-left: 14px; }
