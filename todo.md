@@ -1,0 +1,43 @@
+# Project TODO
+
+- [x] Establish a premium navy, electric-blue, gold, and ivory visual system with Space Grotesk and Inter typography.
+- [x] Build a responsive sticky top navigation with smooth-scroll links, mobile menu, theme control, and an always-visible Book Consultation CTA.
+- [x] Create an animated hero with a premium 3D globe treatment, conversion copy, primary CTAs, and trust statistics.
+- [x] Build animated visa service cards for tourist, student, work, business, family, permanent residency, admissions, and documentation services.
+- [x] Add accessible service-detail modals that open from every service card.
+- [x] Create a filterable country destination explorer with requirements, planning-time estimates, category filters, and official-portal links.
+- [x] Build a multi-step visa eligibility checker with progress, validation, back/next controls, and a clearly qualified result summary.
+- [x] Design a consultation booking form with name, email, phone, visa type, preferred date, preferred time, and message fields.
+- [x] Add a consultation request database table, query helpers, public tRPC mutation, validation, and success/error handling.
+- [x] Build an About section with company story, role-based team expertise, and trust indicators without inventing personal biographies.
+- [x] Create a success-stories carousel that only displays verified client content and otherwise presents a transparent no-testimonial empty state.
+- [x] Build an accessible animated FAQ accordion with common visa and immigration questions.
+- [x] Create a Contact section with business details, Islamabad/Karachi/Lahore locations, social links, and an enquiry form.
+- [x] Add database persistence and validation for contact enquiries.
+- [x] Create a premium footer with navigation, services, destinations, policy links, newsletter field, and social links.
+- [x] Add subtle scroll reveals, card depth, hover lighting, ambient gradients, reduced-motion support, and responsive interaction polish.
+- [x] Add SEO metadata, structured data, semantic landmarks, robots.txt, and PWA manifest essentials.
+- [x] Write or update Vitest coverage for consultation and enquiry procedures plus core eligibility logic.
+- [x] Run type checks, tests, and production build; resolve all errors.
+- [x] Capture desktop and mobile previews and refine visual quality, accessibility, and responsive behavior.
+- [x] Review this checklist, mark every completed item, save the final checkpoint, and deliver the project.
+- [x] Integrate the supplied React Bits LightTunnel WebGL component with the site’s blue-and-gold atlas palette.
+- [x] Make the hero globe rotate continuously while preserving land, grid, glow, route beacons, and legibility.
+- [x] Animate orbital planes, route rings, floating passport, visa stamp, and status chip with coordinated independent motion.
+- [x] Add a performance-aware LightTunnel transition or backdrop that complements rather than obscures conversion content.
+- [x] Add richer scroll-linked reveals, parallax accents, route-line movement, and card micro-interactions across key sections.
+- [x] Respect reduced-motion preferences and pause expensive animation when off-screen or the page is hidden.
+- [x] Re-run tests, type checks, production build, runtime-log review, and desktop/mobile visual verification.
+- [x] Save and deliver the updated animation checkpoint.
+- [x] Add camera-like pointer parallax and scroll-linked depth/zoom to the hero scene without disturbing headline legibility.
+- [x] Add cinematic hero objects including an orbiting satellite, floating boarding pass, suitcase, meteor streaks, aurora, and layered star depth.
+- [x] Add a polished 3D loading sequence with a D→D route animation and reduced-motion bypass.
+- [x] Add a custom glowing cursor with trailing particles, interactive expansion, and coarse-pointer/reduced-motion safeguards.
+- [x] Add magnetic motion and ripple feedback to key buttons and navigation actions.
+- [x] Upgrade service cards with cursor-responsive 3D tilt, holographic glare, and controlled particle bursts.
+- [x] Add cinematic portal dividers and scroll-reactive depth transitions between major website environments.
+- [x] Upgrade the destination, about, process, stories, contact, and footer sections with distinct 3D scene motifs rather than flat backgrounds.
+- [x] Add an opt-in ambient sound control using a low-volume generated soundscape with no autoplay.
+- [x] Ensure all continuous effects pause off-screen or when the page is hidden and remain usable with reduced motion.
+- [x] Re-run tests, type checks, production build, runtime-log review, and desktop/mobile visual verification.
+- [x] Save and deliver the cinematic 3D checkpoint.
