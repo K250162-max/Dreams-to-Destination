@@ -60,7 +60,29 @@ export function ConsultationForm() {
       </div>
       <div className="form-row">
         <label><span>Preferred date</span><input required type="date" min={minimumDate} value={form.preferredDate} onChange={event => update("preferredDate", event.target.value)} /></label>
-        <label><span>Preferred time</span><select required value={form.preferredTime} onChange={event => update("preferredTime", event.target.value)}><option value="">Choose a time</option><option>Morning · 09:00–12:00</option><option>Afternoon · 12:00–16:00</option><option>Evening · 16:00–19:00</option></select></label>
+        <label>
+  <span>Preferred time</span>
+
+  <select
+    required
+    value={form.preferredTime}
+    onChange={event =>
+      update("preferredTime", event.target.value)
+    }
+  >
+    <option value="">Choose a time</option>
+
+    <option>09:00 AM</option>
+    <option>10:00 AM</option>
+    <option>11:00 AM</option>
+    <option>12:00 PM</option>
+    <option>01:00 PM</option>
+    <option>02:00 PM</option>
+    <option>03:00 PM</option>
+    <option>04:00 PM</option>
+    <option>05:00 PM</option>
+  </select>
+</label>
       </div>
       <label><span>What would you like to achieve? <small>Optional</small></span><textarea maxLength={2000} value={form.message} onChange={event => update("message", event.target.value)} placeholder="Share your preferred destination, timing, and any questions." rows={4} /></label>
       <label className="honeypot" aria-hidden="true"><span>Website</span><input tabIndex={-1} autoComplete="off" value={form.website} onChange={event => update("website", event.target.value)} /></label>
