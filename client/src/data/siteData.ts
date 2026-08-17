@@ -50,7 +50,6 @@ export type FAQ = {
   answer: string;
 };
 
-
 /* =========================================================
    SERVICES
 ========================================================= */
@@ -234,7 +233,6 @@ export const services: Service[] = [
   },
 ];
 
-
 /* =========================================================
    DESTINATIONS
 ========================================================= */
@@ -371,7 +369,6 @@ export const destinations: Destination[] = [
   },
 ];
 
-
 /* =========================================================
    TRUST / SUCCESS STORIES
 ========================================================= */
@@ -396,7 +393,6 @@ export const trustStats = [
     label: "Transparent process",
   },
 ];
-
 
 /* =========================================================
    ADVISORY TEAM
@@ -443,7 +439,6 @@ export const advisoryTeam: AdvisoryTeamMember[] = [
   },
 ];
 
-
 /* =========================================================
    PROCESS STEPS
 ========================================================= */
@@ -473,7 +468,6 @@ export const processSteps: [string, string, string][] = [
     "You receive practical guidance on the next steps for your chosen route.",
   ],
 ];
-
 
 /* =========================================================
    FAQS
@@ -517,24 +511,24 @@ export const faqs: FAQ[] = [
   },
 ];
 
-
 /* =========================================================
    CONTACT DETAILS
 ========================================================= */
 
 export const contactDetails: ContactDetails = {
-  phone: "+92 300 0000000",
+  phone: "+92 332 3392590 | +971 56 413 0272 | +92 336 5188711",
 
   email: "hello@dreamstodestination.com",
 
   locations: [
-    "Pakistan",
-    "Serving clients planning international journeys",
+    "Islamabad: Twinhub, Interlace Plaza, I-8",
+    "Rawalpindi: Peshawar Road",
+    "Dubai: Silicon Oasis",
   ],
 
   instagram: "https://www.instagram.com/",
 
   facebook: "https://www.facebook.com/",
 
-  whatsapp: "https://wa.me/923000000000",
+  whatsapp: "https://wa.me/923323392590",
 };
