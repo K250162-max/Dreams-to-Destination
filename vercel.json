@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "buildCommand": "pnpm build",
+  "buildCommand": "pnpm build && esbuild api/index.js --bundle --platform=node --format=esm --packages=external --outfile=api/index.js",
   "outputDirectory": "dist/public",
   "rewrites": [
     {
       "source": "/api/trpc/(.*)",
-      "destination": "/api/index.ts"
+      "destination": "/api/index.js"
     }
   ]
 }
