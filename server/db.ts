@@ -14,6 +14,7 @@ let _db: ReturnType<typeof drizzle> | null = null;
 
 // Create the database connection lazily.
 export async function getDb() {
+  console.log("[Database] DATABASE_URL:", process.env.DATABASE_URL ? "LOADED" : "MISSING");
   if (_db) {
     return _db;
   }
@@ -215,3 +216,4 @@ export async function createContactEnquiry(
     throw error;
   }
 }
+
