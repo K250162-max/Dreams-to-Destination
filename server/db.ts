@@ -8,22 +8,41 @@ import {
   InsertUser,
   users,
 } from "../drizzle/schema";
-import { ENV } from './_core/env';
+import { ENV } from "./_core/env";
 
 let _db: ReturnType<typeof drizzle> | null = null;
 
-// Lazily create the drizzle instance so local tooling can run without a DB.
+// Create the database connection lazily.
 export async function getDb() {
-  if (!_db && process.env.DATABASE_URL) {
-    try {
-      _db = drizzle(process.env.DATABASE_URL);
-    } catch (error) {
-      console.warn("[Database] Failed to connect:", error);
-      _db = null;
-    }
+  if (_db) {
+    return _db;
   }
-  return _db;
+
+  const databaseUrl = process.env.DATABASE_URL || ENV.databaseUrl;
+
+  if (!databaseUrl) {
+    console.error("[Database] DATABASE_URL is missing.");
+    return null;
+  }
+
+  try {
+    console.log("[Database] Connecting to database...");
+
+    _db = drizzle(databaseUrl);
+
+    console.log("[Database] Database connection initialized.");
+
+    return _db;
+  } catch (error) {
+    console.error("[Database] Failed to initialize database:", error);
+    _db = null;
+    return null;
+  }
 }
+
+// ---------------------------------------------------------
+// USERS
+// ---------------------------------------------------------
 
 export async function upsertUser(user: InsertUser): Promise<void> {
   if (!user.openId) {
@@ -31,8 +50,9 @@ export async function upsertUser(user: InsertUser): Promise<void> {
   }
 
   const db = await getDb();
+
   if (!db) {
-    console.warn("[Database] Cannot upsert user: database not available");
+    console.warn("[Database] Cannot upsert user: database unavailable.");
     return;
   }
 
@@ -40,15 +60,22 @@ export async function upsertUser(user: InsertUser): Promise<void> {
     const values: InsertUser = {
       openId: user.openId,
     };
+
     const updateSet: Record<string, unknown> = {};
 
     const textFields = ["name", "email", "loginMethod"] as const;
+
     type TextField = (typeof textFields)[number];
 
     const assignNullable = (field: TextField) => {
       const value = user[field];
-      if (value === undefined) return;
+
+      if (value === undefined) {
+        return;
+      }
+
       const normalized = value ?? null;
+
       values[field] = normalized;
       updateSet[field] = normalized;
     };
@@ -59,12 +86,13 @@ export async function upsertUser(user: InsertUser): Promise<void> {
       values.lastSignedIn = user.lastSignedIn;
       updateSet.lastSignedIn = user.lastSignedIn;
     }
+
     if (user.role !== undefined) {
       values.role = user.role;
       updateSet.role = user.role;
     } else if (user.openId === ENV.ownerOpenId) {
-      values.role = 'admin';
-      updateSet.role = 'admin';
+      values.role = "admin";
+      updateSet.role = "admin";
     }
 
     if (!values.lastSignedIn) {
@@ -78,36 +106,112 @@ export async function upsertUser(user: InsertUser): Promise<void> {
     await db.insert(users).values(values).onDuplicateKeyUpdate({
       set: updateSet,
     });
+
+    console.log("[Database] User saved successfully.");
   } catch (error) {
     console.error("[Database] Failed to upsert user:", error);
     throw error;
   }
 }
 
+// ---------------------------------------------------------
+// GET USER
+// ---------------------------------------------------------
+
 export async function getUserByOpenId(openId: string) {
   const db = await getDb();
+
   if (!db) {
-    console.warn("[Database] Cannot get user: database not available");
+    console.warn("[Database] Cannot get user: database unavailable.");
     return undefined;
   }
 
-  const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
+  try {
+    const result = await db
+      .select()
+      .from(users)
+      .where(eq(users.openId, openId))
+      .limit(1);
 
-  return result.length > 0 ? result[0] : undefined;
+    return result.length > 0 ? result[0] : undefined;
+  } catch (error) {
+    console.error("[Database] Failed to get user:", error);
+    throw error;
+  }
 }
 
-export async function createConsultationRequest(input: InsertConsultationRequest) {
-  const db = await getDb();
-  if (!db) throw new Error("Database is unavailable");
+// ---------------------------------------------------------
+// CONSULTATION REQUEST
+// ---------------------------------------------------------
 
-  const [result] = await db.insert(consultationRequests).values(input);
-  return { id: Number(result.insertId) };
+export async function createConsultationRequest(
+  input: InsertConsultationRequest,
+) {
+  console.log("[Database] Creating consultation request...");
+
+  const db = await getDb();
+
+  if (!db) {
+    throw new Error("Database is unavailable");
+  }
+
+  try {
+    const [result] = await db
+      .insert(consultationRequests)
+      .values(input);
+
+    console.log(
+      "[Database] Consultation request created:",
+      Number(result.insertId),
+    );
+
+    return {
+      id: Number(result.insertId),
+    };
+  } catch (error) {
+    console.error(
+      "[Database] Failed to create consultation request:",
+      error,
+    );
+
+    throw error;
+  }
 }
 
-export async function createContactEnquiry(input: InsertContactEnquiry) {
-  const db = await getDb();
-  if (!db) throw new Error("Database is unavailable");
+// ---------------------------------------------------------
+// CONTACT ENQUIRY
+// ---------------------------------------------------------
 
-  const [result] = await db.insert(contactEnquiries).values(input);
-  return { id: Number(result.insertId) };
+export async function createContactEnquiry(
+  input: InsertContactEnquiry,
+) {
+  console.log("[Database] Creating contact enquiry...");
+
+  const db = await getDb();
+
+  if (!db) {
+    throw new Error("Database is unavailable");
+  }
+
+  try {
+    const [result] = await db
+      .insert(contactEnquiries)
+      .values(input);
+
+    console.log(
+      "[Database] Contact enquiry created:",
+      Number(result.insertId),
+    );
+
+    return {
+      id: Number(result.insertId),
+    };
+  } catch (error) {
+    console.error(
+      "[Database] Failed to create contact enquiry:",
+      error,
+    );
+
+    throw error;
+  }
 }
